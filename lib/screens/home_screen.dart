@@ -13,10 +13,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   final Box tasksBox = Hive.box("tasks");
   final Box doneTasksBox = Hive.box("doneTasks");
   final Box userBox = Hive.box("imagePath");
+
   late final ImagePicker _picker;
+
   final TextEditingController _textEditingController = TextEditingController();
 
 
@@ -45,6 +48,11 @@ class _HomeScreenState extends State<HomeScreen> {
       _textEditingController.clear();
       Navigator.pop(context);
     }
+  }
+
+  void doneTasks(int index,String taskTitle){
+    doneTasksBox.add(taskTitle);
+    tasksBox.delete(index);
   }
 
 
