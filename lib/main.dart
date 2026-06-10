@@ -12,5 +12,5 @@ void main() async {
   await Hive.openBox("doneTasks");
   await Hive.openBox("imagePath");
 
-  runApp(MaterialApp(home: HomeScreen()));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen()));
 }
