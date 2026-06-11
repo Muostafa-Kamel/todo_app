@@ -37,6 +37,7 @@ dependencies:
   hive:
   hive_flutter:
   image_picker:
+  lottie: ^3.3.3
 
 dev_dependencies:
   flutter_test:
