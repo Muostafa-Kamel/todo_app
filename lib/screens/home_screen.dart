@@ -43,19 +43,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void getImageFromGallery() async {
-    var _imagePath = await _picker.pickImage(source: ImageSource.gallery);
-    if (_imagePath != null) {
+    var imagePath = await _picker.pickImage(source: ImageSource.gallery);
+    if (imagePath != null) {
       setState(() {
-        userBox.put("imagePath", _imagePath.path);
+        userBox.put("imagePath", imagePath.path);
       });
     }
   }
 
   void getImageFromCamera() async {
-    final _imagePath = await _picker.pickImage(source: ImageSource.camera);
-    if (_imagePath != null) {
+    final imagePath = await _picker.pickImage(source: ImageSource.camera);
+    if (imagePath != null) {
       setState(() {
-        userBox.put("imagePath", _imagePath.path);
+        userBox.put("imagePath", imagePath.path);
       });
     }
   }
@@ -112,7 +112,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void doneTasks(int index, String taskTitle, String taskDate) {
     doneTasksBox.add(taskTitle);
     dateBox.add(taskDate);
-    tasksBox.delete(index);
+    tasksBox.deleteAt(index);
+    dateBox.deleteAt(index);
   }
 
   @override
@@ -121,10 +122,12 @@ class _HomeScreenState extends State<HomeScreen> {
     String? path = userBox.get("imagePath");
     return Scaffold(
       backgroundColor: AppThemes.appPrimaryColor,
+
       appBar: AppBar(
         actionsPadding: EdgeInsets.all(10),
         backgroundColor: AppThemes.appBarColor,
         title: Text("Taskati 🚀", style: AppThemes.appBarTextStyle),
+
         actions: [
           GestureDetector(
             onTap: showImagePicker,
